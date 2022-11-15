@@ -1,7 +1,7 @@
 {
-  "name": "google-oauth2",
+  "name": "digital-voting-system",
   "version": "1.0.0",
-  "description": "",
+  "description": "Created for [this YouTube video](https://youtu.be/Q0a0594tOrc)",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
