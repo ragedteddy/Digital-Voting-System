@@ -35,7 +35,6 @@ app.use(passport.session());
 let name="User";
 
 app.get('/', (req, res) => {
-  // res.render("candidates",{name:name, triggerModal:'0'});
   res.render('signup',{triggerModal:false});
 });
 
