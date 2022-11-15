@@ -7,7 +7,7 @@ const GOOGLE_CLIENT_SECRET = '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';
 passport.use(new GoogleStrategy({
   clientID: '826805191452-72kusqvqiqde8iun0c831mbcs64trcdn.apps.googleusercontent.com',
   clientSecret: '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',
-  callbackURL: "http://localhost:5000/auth/google/callback",
+  callbackURL: "https://obscure-taiga-88935.herokuapp.com/auth/google/callback",
   passReqToCallback: true,
 },
 function(request, accessToken, refreshToken, profile, done) {
