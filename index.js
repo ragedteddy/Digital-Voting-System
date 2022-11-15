@@ -122,4 +122,4 @@ app.get('/auth/google/failure', (req, res) => {
   res.send('Failed to authenticate..');
 });
 
-app.listen(5000, () => console.log('listening on port: 5000'));
+app.listen(process.env.PORT||5000, () => console.log('Server started...'));
