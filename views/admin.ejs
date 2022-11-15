@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">    
+        <link rel="stylesheet" href="./style.css">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </head>
+    <body>
+        <div class="col-11 mx-auto d-flex flex-row justify-content-between mt-3">
+            <h6>Welcome Admin</h6>
+            <div class="d-flex flex-row justify-content-center align-items-center">
+              <form action="/logout" method="get">
+                <button class="btn" type="submit">Log Out</button>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+              </svg>
+              </form>
+            </div>
+        </div>
+
+        <div class="d-flex flex-row mt-4">
+            <div class="col-4 ms-4">
+                <h5 class="mx-5 mt-5">Current Standings</h5>
+                <div id="standings">
+
+                </div>
+            </div>
+            <div id="donutchart" class="col-6" style="height:70vh;"></div>
+        </div>
+     <%  %>
+     <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      let Saumik = <%=votes2[0]%>;
+      let Om = <%=votes2[1]%>;
+      let Nikhil = <%=votes2[2]%>;
+      let Rachit = <%=votes2[3]%>;
+      let Krishan = <%=votes2[4]%>;
+      let votes = [
+          ['Saumik', Saumik],
+          ['Om',    Om],
+          ['Nikhil',  Nikhil],
+          ['Rachit', Rachit],
+          ['Krishan',  Krishan]
+        ]
+     
+
+
+        function sortFunction(a, b) {
+            if(a[1] < b[1])return 1;
+            else return -1
+        }
+        votes = votes.sort(sortFunction);
+        votes.unshift(['Candidate', 'Votes']);
+        console.log(votes)
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(votes);
+
+        var options = {
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        chart.draw(data, options);
+ 
+      }
+
+      let standings = document.createElement('div')
+      standings.setAttribute("class","d-flex flex-column justidy-content-center m-5");
+
+      for(let i = 0;i < 3;i++){
+        
+        let temp = document.createElement("div")
+        temp.setAttribute("class","d-flex flex-row justidy-content-center align-items-center m-3");
+
+        let number = document.createElement("h3")
+        number.setAttribute('class',"me-3")
+        number.innerText = i+1;
+        console.log(standings)
+
+        let img = document.createElement("img")
+        img.setAttribute("src",votes[i+1][0] + ".jpeg")
+        img.setAttribute("style","height:50px;border-radius:50%;width:50px;")
+
+        let t =document.createElement('div')
+        t.setAttribute('class','d-flex flex-column ms-3')
+        t.innerHTML = `<h6>${votes[i+1][0]}</h6><h6> ${votes[i+1][1]} votes</h6>`
+
+        temp.appendChild(number)
+        temp.appendChild(img)
+        temp.appendChild(t)
+        standings.appendChild(temp)
+      }
+      document.getElementById('standings').appendChild(standings)
+    </script>
+    <%  %>
+
+    </body>
+
+</html>
