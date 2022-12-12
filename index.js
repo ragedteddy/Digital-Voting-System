@@ -48,29 +48,8 @@ app.post('/manifesto', (req, res) => {
 });
 
 app.get('/admin', async (req, res) => {
-  let votes=[0,0,0,0,0];
-  let votedCandidate="Saumik";
-  Vote.countDocuments({votedCandidate}, function (err, count){ 
-    votes[0]=count+1;
-    votedCandidate="Om";
-    Vote.countDocuments({votedCandidate}, function (err, count){ 
-      votes[1]=count+2;
-      votedCandidate="Nikhil";
-      Vote.countDocuments({votedCandidate}, function (err, count){ 
-        votes[2]=count+5;
-        votedCandidate="Rachit";
-        Vote.countDocuments({votedCandidate}, function (err, count){ 
-          votes[3]=count+1;
-          votedCandidate="Krishan";
-          Vote.countDocuments({votedCandidate}, function (err, count){ 
-            votes[4]=count+7;
-            let x=votes[0]+votes[1]+votes[2]+votes[3]+votes[4];
-            res.render("admin",{votes2:votes,votes:x});
-          });
-        });
-      });
-    });
-  });
+  let votes2=[0,0,0,0,0];
+  res.render("admin",{votes2,votes:0});
 });
 
 app.post('/voted', async (req, res) => {
