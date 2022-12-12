@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-4 text-center mr-5 mt-3">
           <img src="<%=name%>.jpeg" class="rounded-circle" height="250px" width="250px">
-          <h3 class="mt-3 text-center"><% name%></h3>
+          <h3 class="mt-3 text-center"><%=name%></h3>
         </div>
         <div class="col">
           <h2 >Dear Voter,</h2>
@@ -63,7 +63,7 @@
             <div class="modal-footer d-flex flex-row justify-content-around">
               
               <button type="button" class="col-5 btn btn-outline-secondary" data-bs-dismiss="modal">cancel</button>
-              <button type="submit" class="col-5 btn btn-primary" data-bs-dismiss="modal"   name="candidate" value="<%= name %> "   >Confirm Vote</button>
+              <button type="submit" id="vote" disabled class="col-5 btn btn-primary" data-bs-dismiss="modal"   name="candidate" value="<%= name %> "   >Confirm Vote</button>
               
             </div>
           </form>
@@ -84,6 +84,7 @@
           canvas.style.display = "block"
           let video = document.getElementById('video')
           document.getElementById('retake').style.display = "block"
+          document.getElementById('vote').disabled = false
           document.getElementById('click-photo').style.display = "none"
           canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
           document.getElementById('video').style.display = "none"

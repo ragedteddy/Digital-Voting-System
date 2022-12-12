@@ -64,7 +64,8 @@ app.get('/admin', async (req, res) => {
           votedCandidate="Krishan";
           Vote.countDocuments({votedCandidate}, function (err, count){ 
             votes[4]=count+7;
-            res.render("admin",{votes2:votes});
+            let x=votes[0]+votes[1]+votes[2]+votes[3]+votes[4];
+            res.render("admin",{votes2:votes,votes:x});
           });
         });
       });
@@ -92,7 +93,7 @@ app.get('/auth/google',
   passport.authenticate('google', { scope: [ 'email', 'profile' ] }
 ));
 
-app.get( '/auth/google/callback',
+app.get('/auth/google/callback',
   passport.authenticate( 'google', {
     successRedirect: '/protected',
     failureRedirect: '/auth/google/failure'
@@ -102,7 +103,7 @@ app.get( '/auth/google/callback',
 app.get('/protected', isLoggedIn, (req, res) => {
   let email=req.user.email;
   name=req.user.given_name;
-  if(email==="k19je0450.19je0450@cse.iitism.ac.in"){
+  if(email==="nikhilkvpy2018@gmail.com"){
     res.redirect("/admin");
   }else if(email.substring(email.length-13)===".iitism.ac.in"){
     res.render("candidates",{name: name,triggerModal:'0'});

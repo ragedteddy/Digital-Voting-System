@@ -13,6 +13,7 @@
     <body>
         <div class="col-11 mx-auto d-flex flex-row justify-content-between mt-3">
             <h6>Welcome Admin</h6>
+            
             <div class="d-flex flex-row justify-content-center align-items-center">
               <form action="/logout" method="get">
                 <button class="btn" type="submit">Log Out</button>
@@ -23,7 +24,7 @@
               </form>
             </div>
         </div>
-
+        <h4 class="ps-5 text-primary text-center"><%=votes%> out of 1000 voters have voted.</h4>
         <div class="d-flex flex-row mt-4">
             <div class="col-4 ms-4">
                 <h5 class="mx-5 mt-5">Current Standings</h5>
@@ -33,6 +34,8 @@
             </div>
             <div id="donutchart" class="col-6" style="height:70vh;"></div>
         </div>
+
+        
      <%  %>
      <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
